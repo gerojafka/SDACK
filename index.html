@@ -117,8 +117,12 @@ button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
 .lang{display:inline-flex;gap:2px;padding:3px;background:var(--cream);color:var(--ink);border:3px solid var(--ink);border-radius:14px;box-shadow:0 4px 0 var(--ink);
   font-family:var(--display);font-size:16px;line-height:1;transition:transform .06s,box-shadow .06s}
 .lang:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
-.lang span{padding:7px 11px;border-radius:9px}
-.lang span.on{background:var(--ink);color:var(--cream)}
+.lang span{display:flex;align-items:center;gap:6px;padding:6px 10px 6px 7px;border-radius:9px}
+.lang span:not(.on){opacity:.6}
+.lang span.on{background:var(--foudre);box-shadow:inset 0 0 0 2px var(--ink)}
+.flag{display:block;flex:none;width:24px;height:16px;border:2px solid var(--ink);border-radius:4px}
+.flag.fr{background:linear-gradient(90deg,#2a5bd7 0 33.4%,#fff 33.4% 66.6%,#f0384a 66.6%)}
+.flag.us{background:linear-gradient(#2a4bb0,#2a4bb0) left top/46% 58% no-repeat,repeating-linear-gradient(180deg,#f0384a 0 20%,#fff 20% 40%)}
 #title .lang{position:absolute;z-index:1;top:calc(12px + var(--sa-t));right:calc(12px + var(--sa-r))}
 @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.07)}}
 
@@ -321,7 +325,7 @@ button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
 </div>
 
 <section id="title" class="overlay veil">
-  <button class="lang" type="button" aria-label="Language: English. Switch to French"><span data-l="fr">FR</span><span data-l="en" class="on">US</span></button>
+  <button class="lang" type="button" aria-label="Language: English. Switch to French"><span data-l="fr"><i class="flag fr"></i>FR</span><span data-l="en" class="on"><i class="flag us"></i>US</span></button>
   <div class="title-top">
     <h1 class="logo" aria-label="Stack and Protect">
       <span class="stack" aria-hidden="true">
@@ -368,7 +372,7 @@ button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
     <h2 data-i18n="pause.title">Paused</h2>
     <button id="btn-resume" class="btn go" type="button" data-i18n="pause.resume">Resume</button>
     <button id="btn-restart" class="btn ghost" type="button" data-i18n="pause.restart">Restart game</button>
-    <button class="lang" type="button" aria-label="Language: English. Switch to French"><span data-l="fr">FR</span><span data-l="en" class="on">US</span></button>
+    <button class="lang" type="button" aria-label="Language: English. Switch to French"><span data-l="fr"><i class="flag fr"></i>FR</span><span data-l="en" class="on"><i class="flag us"></i>US</span></button>
   </div>
 </section>
 
