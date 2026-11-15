@@ -1,5 +1,5 @@
 /* Hors ligne : réseau d'abord (les mises à jour arrivent), cache en secours. */
-const CACHE = 'stack-protect-v1';
+const CACHE = 'stack-protect-v2';
 const SHELL = ['./', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL).catch(() => {})));

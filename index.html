@@ -282,6 +282,162 @@ button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
   .float,.float.big{animation-duration:.7s}
 }
 
+
+/* ================= joueurs, connexion, classement ================= */
+input{font:inherit;color:inherit;-webkit-user-select:text;user-select:text;touch-action:manipulation}
+#who,#rank,#modal{touch-action:pan-y}
+.pav{position:relative;display:block;flex:none;width:44px;height:44px;border-radius:13px;background:var(--c);border:3px solid var(--ink);
+  box-shadow:0 4px 0 var(--d),0 4px 0 3px var(--ink);margin-bottom:6px}
+.pav i{position:absolute;top:10px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--ink)}
+.pav i:nth-child(1){left:5px} .pav i:nth-child(2){right:5px}
+.pav i::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ink);transform:translate(-30%,-35%)}
+.pav b{position:absolute;left:50%;bottom:6px;width:11px;height:6px;border:2.5px solid var(--ink);border-top:0;border-radius:0 0 9px 9px;transform:translateX(-50%)}
+.pav.sm{width:30px;height:30px;border-radius:9px;margin-bottom:4px;box-shadow:0 3px 0 var(--d),0 3px 0 2px var(--ink);border-width:2px}
+.pav.sm i{top:7px;width:9px;height:9px;border-width:1.5px} .pav.sm i:nth-child(1){left:3px} .pav.sm i:nth-child(2){right:3px}
+.pav.sm i::after{width:4px;height:4px}
+.pav.sm b{bottom:4px;width:8px;height:4px;border-width:2px}
+
+/* page d'accueil : grand titre brillant, carte cerclée d'or, une question à la fois */
+#who{display:flex;flex-direction:column;justify-items:normal;align-items:center;padding:0 calc(14px + var(--sa-r)) calc(22px + var(--sa-b)) calc(14px + var(--sa-l));
+  background:radial-gradient(ellipse 90% 55% at 50% 34%,#ff5fe0 0%,#d92fc8 26%,#8e1fa8 55%,#3d0f68 82%,#1d0a38 100%)}
+.who-sky{position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 12% 22%,#fff 0 1.5px,transparent 2.5px),radial-gradient(circle at 86% 16%,#fff 0 2px,transparent 3px),
+  radial-gradient(circle at 78% 46%,#ffe9a8 0 1.5px,transparent 2.5px),radial-gradient(circle at 20% 62%,#fff 0 1px,transparent 2px),
+  radial-gradient(circle at 92% 72%,#fff 0 1.5px,transparent 2.5px),radial-gradient(circle at 6% 86%,#ffe9a8 0 2px,transparent 3px),
+  radial-gradient(ellipse 120% 30% at 50% 108%,rgba(255,120,240,.55),transparent 70%);animation:twinkle 2.6s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.55}to{opacity:1}}
+.who-tab{position:relative;z-index:1;padding:calc(10px + var(--sa-t)) 34px 16px;border-radius:0 0 46px 46px;
+  background:linear-gradient(180deg,#5a1a78 0%,#3a0f58 100%);border:4px solid #e9bd5a;border-top:0;
+  box-shadow:0 0 0 3px #8a5a14,inset 0 -3px 0 rgba(255,255,255,.12),0 10px 24px rgba(0,0,0,.4)}
+.minilogo{display:flex;align-items:center;gap:6px;font-family:var(--display);font-weight:400;line-height:1}
+.minilogo .stack{display:flex;gap:4px}
+.minilogo .stack i{font-style:normal;display:grid;place-items:center;width:32px;height:32px;border-radius:9px;font-size:21px;background:var(--c);color:var(--ink);
+  border:2px solid var(--ink);box-shadow:0 3px 0 var(--d),0 3px 0 2px var(--ink);transform:rotate(var(--r))}
+.minilogo .amp{margin-left:8px;font-size:22px;color:#ffe9a8;text-shadow:var(--outline-sm)}
+.who-shout{position:relative;z-index:2;margin:18px 0 0;display:flex;flex-direction:column;align-items:center;font-family:var(--display);font-weight:400;
+  font-size:clamp(50px,13vw,84px);line-height:.9;text-align:center;transform:rotate(-3deg) skewX(-6deg);pointer-events:none}
+.who-shout span{background:linear-gradient(180deg,#ffffff 0%,#fff6d6 40%,#ffd75a 58%,#fff3c4 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 0 #fff) drop-shadow(0 4px 0 #ff3fb8) drop-shadow(0 4px 0 #a0106e) drop-shadow(0 9px 8px rgba(40,0,50,.55))}
+.who-card{position:relative;z-index:1;width:min(100%,470px);margin-top:-30px;padding:46px 26px 24px;border-radius:30px;
+  background:linear-gradient(180deg,#7a1696 0%,#9a1fb2 38%,#d62cd8 100%);border:3px solid #f0c561;
+  box-shadow:0 0 0 3px #7a4a10,inset 0 3px 0 rgba(255,255,255,.3),inset 0 -14px 30px rgba(255,140,255,.35),0 22px 44px rgba(20,0,40,.55);
+  color:#fff;text-align:center}
+#who-step form{display:flex;flex-direction:column;align-items:center;gap:14px}
+#who-step h2{font-family:var(--body);font-weight:900;font-size:clamp(25px,6.6vw,34px);line-height:1.1;text-transform:uppercase;letter-spacing:.3px;
+  text-shadow:0 3px 0 rgba(70,0,90,.55),0 0 18px rgba(255,255,255,.25)}
+.who-input{width:100%;max-width:300px;height:56px;padding:0 16px;border:3px solid #fff;border-radius:12px;outline:none;color:var(--ink);font-family:var(--body);font-weight:800;font-size:20px;
+  background:linear-gradient(180deg,#e9e6ee 0%,#ffffff 45%);box-shadow:0 0 0 2px rgba(90,0,110,.55),inset 0 3px 6px rgba(0,0,0,.18)}
+.who-input::placeholder{color:#8a8296;font-weight:800}
+.who-input:focus{box-shadow:0 0 0 2px rgba(90,0,110,.55),0 0 0 6px rgba(255,233,168,.7),inset 0 3px 6px rgba(0,0,0,.18)}
+.who-input.pin{max-width:210px;text-align:center;font-family:var(--display);font-weight:400;font-size:36px;letter-spacing:14px;padding-left:28px}
+.who-input.pin::placeholder{letter-spacing:10px;font-size:26px}
+.who-input.shake{animation:nope .35s}
+.who-next{background:none;border:0;padding:6px 14px 2px;animation:nudge 1.1s ease-in-out infinite}
+.who-next svg{display:block;width:62px;height:40px}
+.who-next path{fill:#ffd75a;stroke:#5a1a40;stroke-width:4;stroke-linejoin:round;filter:drop-shadow(0 4px 0 #a86a12)}
+.who-next:active{animation:none;transform:translateY(4px)}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.who-err{min-height:1.2em;font-size:15px;font-weight:900;color:#fff;background:rgba(160,0,60,.55);border-radius:10px;padding:5px 10px}
+.who-err:empty{display:none}
+.who-me{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:26px;text-shadow:var(--outline-sm)}
+.who-me .pav{margin-bottom:4px}
+.who-label{font-size:15px;font-weight:900;opacity:.95}
+.who-note{font-size:12.5px;line-height:1.35;opacity:.85;max-width:34ch}
+.who-check{display:flex;align-items:flex-start;gap:9px;font-size:14px;line-height:1.3;text-align:left;cursor:pointer;max-width:32ch}
+.who-check input{width:22px;height:22px;flex:none;accent-color:#ffd75a;margin-top:-1px}
+.who-back{background:none;border:0;color:#fff;font-size:15px;font-weight:900;text-decoration:underline;text-underline-offset:3px;opacity:.9}
+#who-known{margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:10px}
+#who-known:empty{display:none}
+.who-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.who-chip{display:flex;align-items:center;gap:7px;padding:5px 12px 3px 6px;border-radius:999px;background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.65);
+  color:#fff;font-family:var(--display);font-size:18px;line-height:1}
+.who-chip span{padding-bottom:3px}
+.who-chip:active{transform:scale(.96)}
+.who-chip .cl{font-style:normal;font-size:13px;opacity:.85}
+.swatches{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.sw{background:none;border:0;padding:4px;border-radius:14px}
+.sw[aria-pressed="true"]{background:rgba(255,233,168,.9)}
+.sw[aria-pressed="true"] .pav{transform:translateY(-3px)}
+.who-foot{position:relative;z-index:1;margin-top:22px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn.sm{font-size:16px;padding:8px 14px;border-radius:13px;box-shadow:0 4px 0 var(--ink)}
+.btn.sm:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.tool.cloud{position:relative;font-size:19px}
+.tool.cloud::after{content:'';position:absolute;right:-5px;top:-5px;width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:#b8a98f}
+.tool.cloud.ok::after{background:var(--nature)} .tool.cloud.err::after{background:var(--rose)} .tool.cloud.busy::after{background:var(--foudre);animation:throb .5s infinite alternate}
+.who-hint{position:relative;z-index:1;margin-top:14px;max-width:470px;text-align:center;font-size:13px;line-height:1.4;opacity:.85}
+.who-hint:empty{display:none}
+.field{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:900;border:0}
+.field input{font-family:var(--display);font-weight:400;font-size:22px;padding:9px 12px;border:3px solid var(--ink);border-radius:13px;background:#fff;color:var(--ink);width:100%;outline:none}
+.field input:focus{box-shadow:0 0 0 3px var(--glace)}
+.err{min-height:1.2em;font-size:14px;font-weight:900;color:#c41d47}
+.err:empty{display:none}
+/* fenêtres (code, GitHub) */
+#modal{z-index:30}
+.mcard{text-align:left;align-items:stretch}
+.mcard h2{text-align:center}
+.mcard .sub{font-size:15px;line-height:1.4}
+.pinin{align-self:center;font-family:var(--display);font-size:40px;letter-spacing:16px;text-align:center;width:210px;padding:8px 0 8px 16px;border:4px solid var(--ink);border-radius:16px;background:#fff;color:var(--ink);outline:none}
+.pinin:focus{box-shadow:0 0 0 4px var(--glace)}
+.pinin.shake{animation:nope .35s}
+.mrow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:4px}
+.btn.ghost{background:#efe1c3}
+.btn.danger{background:#ffb3c1}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mcard .field input{font-family:var(--body);font-weight:800;font-size:17px;padding:8px 10px}
+.ghstat{font-size:14px;font-weight:900;line-height:1.35;min-height:1.3em}
+.ghstat.ok{color:#1f7d33} .ghstat.err{color:#c41d47}
+.ghstat.info{color:#1778b8}
+.help{font-size:14px;line-height:1.4}
+.help summary{cursor:pointer;font-weight:900}
+.help ol{margin:8px 0 0 20px;display:flex;flex-direction:column;gap:4px}
+
+/* classement */
+#rank .card{gap:14px}
+.seg{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:3px;padding:3px;background:#efe1c3;border:3px solid var(--ink);border-radius:14px}
+.seg button{border:0;background:none;color:var(--ink);font-family:var(--display);font-size:16px;line-height:1;padding:8px 12px;border-radius:10px}
+.seg button[aria-checked="true"]{background:var(--foudre);box-shadow:inset 0 0 0 2px var(--ink)}
+.seg.mode button[aria-checked="true"]{background:var(--glace)}
+#rk-list{width:100%;list-style:none;display:flex;flex-direction:column;gap:9px;max-height:min(52vh,520px);overflow:auto;padding:4px 4px 8px}
+#rk-list .prow{box-shadow:0 4px 0 var(--ink);padding:7px 12px 5px 10px}
+#rk-list .prow .who b{font-size:19px}
+.rk-foot{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+
+/* écran titre : joueur connecté */
+.pchip{position:absolute;z-index:1;top:calc(12px + var(--sa-t));left:calc(12px + var(--sa-l));display:flex;align-items:center;gap:9px;
+  background:var(--cream);color:var(--ink);border:3px solid var(--ink);border-radius:16px;box-shadow:0 4px 0 var(--ink);padding:5px 12px 3px 7px;text-align:left}
+.pchip:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.pchip span{display:flex;flex-direction:column;line-height:1.05;padding-bottom:3px}
+.pchip b{font-family:var(--display);font-weight:400;font-size:19px;max-width:40vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pchip small{font-size:11px;font-weight:900;opacity:.7}
+.title-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+#go-sync{font-size:14px;font-weight:900;opacity:.85}
+#go-sync.err{color:#c41d47;opacity:1}
+#go-today{font-family:var(--display);font-size:19px;color:#b8309a}
+
+@media (max-width:480px){
+  .minilogo .stack i{width:26px;height:26px;font-size:17px}
+  .minilogo .amp{font-size:18px}
+  .who-tab{padding-left:20px;padding-right:20px}
+  .who-card{padding:42px 18px 22px}
+  .two{grid-template-columns:1fr}
+  .swatches{gap:3px} .sw{padding:3px}
+  .prow .sc b{font-size:20px}
+  .seg button{font-size:14px;padding:7px 9px}
+}
+#go-today:empty,#go-sync:empty{display:none}
+#rank{background:rgba(20,11,44,.9)}
+/* lignes du classement */
+.prow{width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:var(--cream);color:var(--ink);border:3px solid var(--ink);border-radius:18px;
+  box-shadow:0 4px 0 var(--ink);padding:7px 12px 5px 10px}
+.prow .who{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.prow .who b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.05;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prow .who small{font-size:13px;font-weight:900;opacity:.75;line-height:1.25}
+.prow .sc{flex:none;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.prow .sc b{font-family:var(--display);font-weight:400;font-size:24px;line-height:1;font-variant-numeric:tabular-nums}
+.prow .sc small{font-size:11px;font-weight:900;opacity:.7}
+.prow .pos{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:17px;background:#f6e6c4;border:2px solid var(--ink)}
+.prow .pos.p1{background:var(--foudre)} .prow .pos.p2{background:#dfe6f2} .prow .pos.p3{background:#f0b07a}
+.prow.me{background:#fff0a8}
 </style>
 </head>
 <body>
@@ -328,6 +484,7 @@ button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
 </div>
 
 <section id="title" class="overlay veil">
+  <button id="who-chip" class="pchip hidden" type="button"></button>
   <button class="lang" type="button" aria-label="Language: English. Switch to French"><span data-l="fr"><i class="flag fr"></i>FR</span><span data-l="en" class="on"><i class="flag us"></i>US</span></button>
   <div class="title-top">
     <h1 class="logo" aria-label="Stack and Protect">
@@ -345,6 +502,7 @@ button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
       <li><span class="demo pile"><i class="chip" style="--c:#ffd23f;--d:#b87f00"></i><i class="mob"></i></span><span data-i18n="title.rule3">A block dropped on a monster squashes it.</span></li>
     </ul>
     <button id="btn-play" class="btn go big" type="button" data-i18n="title.play">Play</button>
+    <button id="title-rank" class="btn sun sm" type="button">🏆 <span data-i18n="rk.btn">Leaderboard</span></button>
     <p id="title-record" class="record hidden"></p>
     <p class="keys" data-i18n="title.keys">Click or tap to place, right-click to remove, arrow keys to rotate the view.</p>
   </div>
@@ -366,7 +524,10 @@ button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
       <p id="go-rank-next" class="next"></p>
     </div>
     <p id="go-line" class="note"></p>
+    <p id="go-today"></p>
+    <p id="go-sync"></p>
     <button id="btn-again" class="btn go big" type="button" data-i18n="over.again">Play again</button>
+    <div class="title-row"><button id="go-rank-btn" class="btn sun sm" type="button">🏆 <span data-i18n="over.board">Leaderboard</span></button><button id="go-switch" class="btn ghost sm" type="button" data-i18n="over.switch">Switch player</button></div>
   </div>
 </section>
 
@@ -399,6 +560,49 @@ button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
     </ul>
     <button id="codex-close" class="btn go" type="button" data-i18n="codex.close">Close</button>
   </div>
+</section>
+
+<!-- page d'accueil : une question à la fois (nom, puis code) -->
+<section id="who" class="overlay hidden" aria-labelledby="who-q">
+  <div class="who-sky" aria-hidden="true"></div>
+  <header class="who-tab">
+    <div class="minilogo" aria-label="Stack and Protect">
+      <span class="stack" aria-hidden="true"><i style="--c:#ff5a3c;--d:#b82a14;--r:-4deg">S</i><i style="--c:#ffd23f;--d:#b87f00;--r:3deg">T</i><i style="--c:#5fd35a;--d:#1f7d33;--r:-2deg">A</i><i style="--c:#4fc8ff;--d:#1778b8;--r:4deg">C</i><i style="--c:#ff7de0;--d:#b8309a;--r:-3deg">K</i></span>
+      <span class="amp" aria-hidden="true">&amp; Protect</span>
+    </div>
+  </header>
+  <h1 class="who-shout" id="who-q"><span data-i18n="who.shout1">Stack,</span><span data-i18n="who.shout2">fuse,</span><span data-i18n="who.shout3">protect!</span></h1>
+  <div class="who-card"><div id="who-step"></div></div>
+  <div class="who-foot">
+    <button id="who-rank" class="btn sun sm" type="button">🏆 <span data-i18n="rk.btn">Leaderboard</span></button>
+    <button id="who-cloud" class="tool cloud" type="button" data-i18n-aria="gh.btn" aria-label="GitHub save">☁</button>
+    <button class="lang" type="button" aria-label="Language: English. Switch to French"><span data-l="fr"><i class="flag fr"></i>FR</span><span data-l="en" class="on"><i class="flag us"></i>US</span></button>
+  </div>
+  <div id="who-hint" class="who-hint"></div>
+</section>
+
+<!-- classement des joueurs -->
+<section id="rank" class="overlay hidden" aria-labelledby="rk-title">
+  <div class="card wide">
+    <h2 id="rk-title" data-i18n="rk.title">Leaderboard</h2>
+    <div id="rk-period" class="seg" role="radiogroup" data-i18n-aria="rk.periodAria">
+      <button type="button" role="radio" data-p="day" data-i18n="rk.day">Today</button><button type="button" role="radio" data-p="week" data-i18n="rk.week">This week</button><button type="button" role="radio" data-p="month" data-i18n="rk.month">This month</button><button type="button" role="radio" data-p="all" data-i18n="rk.all">All time</button>
+    </div>
+    <div id="rk-mode" class="seg mode" role="radiogroup" data-i18n-aria="rk.modeAria">
+      <button type="button" role="radio" data-m="sum" data-i18n="rk.sum">Points added up</button><button type="button" role="radio" data-m="best" data-i18n="rk.best">Best game</button>
+    </div>
+    <ol id="rk-list"></ol>
+    <p id="rk-note" class="note"></p>
+    <div class="rk-foot">
+      <button id="rk-refresh" class="btn ghost sm" type="button" data-i18n="rk.refresh">Refresh</button>
+      <button id="rk-close" class="btn go sm" type="button" data-i18n="rk.close">Close</button>
+    </div>
+  </div>
+</section>
+
+<!-- fenêtre : code du joueur, réglages GitHub -->
+<section id="modal" class="overlay hidden" role="dialog" aria-modal="true">
+  <div id="modal-card" class="card mcard"></div>
 </section>
 
 <script>
@@ -4745,11 +4949,20 @@ function shuffle(a) {
   return a;
 }
 
-/* ---------- sauvegarde locale (records + réactions découvertes) ---------- */
+/* ---------- sauvegarde locale ----------
+   « device » : réglages de l'appareil (son, langue) et anciens records d'avant les profils.
+   « save »   : ce que le jeu lit et écrit ; records, grimoire et conseils vus sont ceux du joueur connecté
+                (voir la partie « Joueurs, connexion et classement »). */
 const SAVE_KEY = 'stack-protect-v1';
-const save = { bestWave: 0, bestScore: 0, codex: {}, muted: false, tipsDone: false, lang: 'en' };
-try { Object.assign(save, JSON.parse(localStorage.getItem(SAVE_KEY) || '{}')); } catch (e) { /* stockage indisponible */ }
-function persist() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); } catch (e) { /* idem */ } }
+const device = {};
+try { Object.assign(device, JSON.parse(localStorage.getItem(SAVE_KEY) || '{}')); } catch (e) { /* stockage indisponible */ }
+const save = { bestWave: 0, bestScore: 0, codex: {}, muted: !!device.muted, tipsDone: false, lang: device.lang === 'fr' ? 'fr' : 'en' };
+const PROF = { db: null, cur: null, lastSync: null };   // joueurs de cet appareil, joueur connecté
+function persist() {
+  device.muted = save.muted; device.lang = save.lang;
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(device)); } catch (e) { /* idem */ }
+  storePlayer();
+}
 
 function buzz(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { /* pas de vibreur */ } }
 
@@ -5010,6 +5223,92 @@ const I18N = {
     'over.next': (left, rank) => left + ' more ' + (left > 1 ? 'waves' : 'wave') + ' to reach ' + rank + '.',
     'over.top': 'Top rank. Now beat your own score.',
     'rank.0': 'Recruit', 'rank.1': 'Apprentice', 'rank.2': 'Guardian', 'rank.3': 'Champion', 'rank.4': 'Hero', 'rank.5': 'Legend', 'rank.6': 'Myth',
+
+    // joueurs : page d'accueil, code, inscription
+    'who.shout1': 'Stack,', 'who.shout2': 'fuse,', 'who.shout3': 'protect!',
+    'who.askName': 'Choose your player name',
+    'who.namePh': 'Player name',
+    'who.next': 'Continue',
+    'who.known': 'Already signed up? Tap your name.',
+    'who.askCode': 'Type your code',
+    'who.notMe': "That's not me",
+    'who.newTitle': 'New player',
+    'who.pickBlock': 'Pick your block',
+    'who.makeCode': 'Create your 4-digit code',
+    'who.play': 'Play',
+    'who.back': 'Change the name',
+    'pin.ok': 'Play',
+    'who.cloud': 'on GitHub',
+    'who.loading': 'Looking for the players on GitHub…',
+    'games': n => n + (n > 1 ? ' games' : ' game'),
+    'gh.hintTitle': 'Already played on another device?',
+    'gh.hintText': 'Connect the GitHub save once on this device: the players and the leaderboard of every device show up here.',
+    'su.colorAria': 'Color',
+    'su.codeNote': "You'll type it to play. It stops someone else from using your player by mistake. It is not real security.",
+    'su.trust': 'Remember me on this device (no code next time)',
+    'su.errName': 'Type a name or a nickname.',
+    'su.errCode': 'The code must be exactly 4 digits.',
+    'pin.aria': '4-digit code',
+    'pin.bad': 'Wrong code.',
+    'pin.fetch': 'Fetching the profile from GitHub…',
+    'pin.notFound': 'Profile not found on GitHub.',
+    'chip.switch': 'Switch player',
+    'chip.aria': name => 'Player: ' + name + '. Switch player',
+
+    // classement
+    'rk.btn': 'Leaderboard',
+    'rk.title': 'Leaderboard',
+    'rk.day': 'Today', 'rk.week': 'This week', 'rk.month': 'This month', 'rk.all': 'All time',
+    'rk.sum': 'Points added up', 'rk.best': 'Best game',
+    'rk.periodAria': 'Period', 'rk.modeAria': 'Ranking by',
+    'rk.unitSum': 'points', 'rk.unitBest': 'best game',
+    'rk.you': 'you',
+    'rk.row': (rank, games, wave) => rank + ' · ' + games + ' · best wave ' + wave,
+    'rk.empty': 'Nobody has played in this period yet.',
+    'rk.local': 'Only the players of this device. Connect GitHub to add the other devices.',
+    'rk.synced': x => 'Synced with GitHub at ' + x + '.',
+    'rk.loading': 'Loading…',
+    'rk.refresh': 'Refresh',
+    'rk.close': 'Close',
+    'rk.weekNote': 'The week starts on Monday, the month on the 1st.',
+
+    // fin de partie : sauvegarde du score
+    'over.saving': 'Saving the score…',
+    'over.savedGh': 'Score saved on GitHub.',
+    'over.savedLocal': 'Score saved on this device.',
+    'over.saveErr': m => 'Score saved on this device only. GitHub: ' + m,
+    'over.today': (pos, n) => "Today's leaderboard: " + pos + (pos === 1 ? 'st' : pos === 2 ? 'nd' : pos === 3 ? 'rd' : 'th') + ' of ' + n + '.',
+    'over.board': 'Leaderboard',
+    'over.switch': 'Switch player',
+
+    // sauvegarde GitHub
+    'gh.btn': 'GitHub save',
+    'gh.title': 'GitHub save',
+    'gh.sub': 'Players, scores and the leaderboard are saved in a private GitHub repository, so every device shares them.',
+    'gh.owner': 'GitHub account', 'gh.repo': 'Repository', 'gh.branch': 'Branch (empty = default)', 'gh.dir': 'Folder in the repository', 'gh.token': 'Access token',
+    'gh.reuse': 'Token found in the English vocabulary app on this device: already filled in.',
+    'gh.help': 'How do I get a token?',
+    'gh.h1': 'On github.com, use a private repository (names and scores can be read there).',
+    'gh.h2': 'Open Settings, Developer settings, Personal access tokens, Fine-grained tokens, then Generate new token.',
+    'gh.h3': 'Repository access: Only select repositories, your repository. Permissions: Contents, Read and write.',
+    'gh.h4': 'Copy the token and paste it here. It stays on this device, shared by every player who uses it.',
+    'gh.test': 'Test and save', 'gh.off': 'Disconnect', 'gh.close': 'Close',
+    'gh.testing': 'Testing…',
+    'gh.ok': x => 'Connected: the repository ' + x + ' is ready.',
+    'gh.missing': 'Fill in the account, the repository and the token.',
+    'gh.readOnly': 'The token can read this repository but not write to it: add the “Contents: Read and write” permission.',
+    'gh.offDone': 'GitHub disconnected on this device.',
+    'gh.e0': 'No connection to GitHub.',
+    'gh.e401': 'Token refused: it is invalid or expired.',
+    'gh.e403': 'Access denied: the token lacks “Contents: Read and write” on this repository, or the GitHub limit is reached.',
+    'gh.e404': 'Repository not found, or the token has no access to it.',
+    'gh.eRead': 'Unreadable file on GitHub.',
+    'gh.eN': n => 'GitHub answered: error ' + n + '.',
+    'gh.stOff': 'GitHub save: not set up',
+    'gh.stOn': 'GitHub connected',
+    'gh.stBusy': 'Syncing…',
+    'gh.stAt': x => 'Synced at ' + x,
+    'gh.stErr': m => 'GitHub: ' + m,
   },
 
   fr: {
@@ -5140,6 +5439,92 @@ const I18N = {
     'over.next': (left, rank) => 'Encore ' + left + (left > 1 ? ' vagues' : ' vague') + ' pour devenir ' + rank + '.',
     'over.top': 'Le plus haut rang. Reste à battre ton score.',
     'rank.0': 'Recrue', 'rank.1': 'Apprenti', 'rank.2': 'Gardien', 'rank.3': 'Champion', 'rank.4': 'Héros', 'rank.5': 'Légende', 'rank.6': 'Mythe',
+
+    // joueurs : page d'accueil, code, inscription
+    'who.shout1': 'Empile,', 'who.shout2': 'fusionne,', 'who.shout3': 'protège !',
+    'who.askName': 'Choisis ton nom de joueur',
+    'who.namePh': 'Nom du joueur',
+    'who.next': 'Continuer',
+    'who.known': 'Déjà inscrit ? Touche ton nom.',
+    'who.askCode': 'Tape ton code',
+    'who.notMe': 'Ce n’est pas moi',
+    'who.newTitle': 'Nouveau joueur',
+    'who.pickBlock': 'Choisis ton bloc',
+    'who.makeCode': 'Crée ton code à 4 chiffres',
+    'who.play': 'Jouer',
+    'who.back': 'Changer de nom',
+    'pin.ok': 'Jouer',
+    'who.cloud': 'sur GitHub',
+    'who.loading': 'Recherche des joueurs sur GitHub…',
+    'games': n => n + (n > 1 ? ' parties' : ' partie'),
+    'gh.hintTitle': 'Déjà joué sur un autre appareil ?',
+    'gh.hintText': 'Connecte la sauvegarde GitHub une fois sur cet appareil : les joueurs et le classement de tous les appareils apparaissent ici.',
+    'su.colorAria': 'Couleur',
+    'su.codeNote': 'Tu le taperas pour jouer. Il évite qu’un autre joueur prenne ton profil par erreur. Ce n’est pas une vraie protection.',
+    'su.trust': 'Se souvenir de moi sur cet appareil (sans code la prochaine fois)',
+    'su.errName': 'Écris un prénom ou un pseudo.',
+    'su.errCode': 'Le code doit faire exactement 4 chiffres.',
+    'pin.aria': 'Code à 4 chiffres',
+    'pin.bad': 'Code incorrect.',
+    'pin.fetch': 'Récupération du profil sur GitHub…',
+    'pin.notFound': 'Profil introuvable sur GitHub.',
+    'chip.switch': 'Changer de joueur',
+    'chip.aria': name => 'Joueur : ' + name + '. Changer de joueur',
+
+    // classement
+    'rk.btn': 'Classement',
+    'rk.title': 'Classement',
+    'rk.day': 'Aujourd’hui', 'rk.week': 'Cette semaine', 'rk.month': 'Ce mois-ci', 'rk.all': 'Depuis le début',
+    'rk.sum': 'Points cumulés', 'rk.best': 'Meilleure partie',
+    'rk.periodAria': 'Période', 'rk.modeAria': 'Classer par',
+    'rk.unitSum': 'points', 'rk.unitBest': 'meilleure partie',
+    'rk.you': 'toi',
+    'rk.row': (rank, games, wave) => rank + ' · ' + games + ' · record vague ' + wave,
+    'rk.empty': 'Personne n’a encore joué sur cette période.',
+    'rk.local': 'Seulement les joueurs de cet appareil. Connecte GitHub pour ajouter ceux des autres appareils.',
+    'rk.synced': x => 'Synchronisé avec GitHub à ' + x + '.',
+    'rk.loading': 'Chargement…',
+    'rk.refresh': 'Actualiser',
+    'rk.close': 'Fermer',
+    'rk.weekNote': 'La semaine commence le lundi, le mois le 1er.',
+
+    // fin de partie : sauvegarde du score
+    'over.saving': 'Enregistrement du score…',
+    'over.savedGh': 'Score enregistré sur GitHub.',
+    'over.savedLocal': 'Score enregistré sur cet appareil.',
+    'over.saveErr': m => 'Score enregistré sur cet appareil seulement. GitHub : ' + m,
+    'over.today': (pos, n) => 'Classement du jour : ' + pos + (pos === 1 ? 'er' : 'e') + ' sur ' + n + '.',
+    'over.board': 'Classement',
+    'over.switch': 'Changer de joueur',
+
+    // sauvegarde GitHub
+    'gh.btn': 'Sauvegarde GitHub',
+    'gh.title': 'Sauvegarde GitHub',
+    'gh.sub': 'Les joueurs, les scores et le classement sont enregistrés dans un dépôt GitHub privé : tous les appareils les partagent.',
+    'gh.owner': 'Compte GitHub', 'gh.repo': 'Dépôt', 'gh.branch': 'Branche (vide = par défaut)', 'gh.dir': 'Dossier dans le dépôt', 'gh.token': 'Jeton d’accès',
+    'gh.reuse': 'Jeton trouvé dans l’appli de vocabulaire anglais sur cet appareil : déjà rempli.',
+    'gh.help': 'Comment obtenir un jeton ?',
+    'gh.h1': 'Sur github.com, utilise un dépôt privé (les noms et les scores y sont lisibles).',
+    'gh.h2': 'Ouvre Settings, Developer settings, Personal access tokens, Fine-grained tokens, puis Generate new token.',
+    'gh.h3': 'Repository access : Only select repositories, ton dépôt. Permissions : Contents, Read and write.',
+    'gh.h4': 'Copie le jeton et colle-le ici. Il reste sur cet appareil, partagé par tous les joueurs qui l’utilisent.',
+    'gh.test': 'Tester et enregistrer', 'gh.off': 'Déconnecter', 'gh.close': 'Fermer',
+    'gh.testing': 'Test en cours…',
+    'gh.ok': x => 'Connexion réussie : le dépôt ' + x + ' est prêt.',
+    'gh.missing': 'Renseigne le compte, le dépôt et le jeton.',
+    'gh.readOnly': 'Le jeton peut lire ce dépôt mais pas y écrire : ajoute la permission « Contents : lecture et écriture ».',
+    'gh.offDone': 'GitHub déconnecté sur cet appareil.',
+    'gh.e0': 'Pas de connexion à GitHub.',
+    'gh.e401': 'Jeton refusé : il est invalide ou expiré.',
+    'gh.e403': 'Accès refusé : le jeton n’a pas le droit « Contents : lecture et écriture » sur ce dépôt, ou la limite GitHub est atteinte.',
+    'gh.e404': 'Dépôt introuvable, ou jeton sans accès à ce dépôt.',
+    'gh.eRead': 'Fichier illisible sur GitHub.',
+    'gh.eN': n => 'GitHub a répondu : erreur ' + n + '.',
+    'gh.stOff': 'Sauvegarde GitHub : non configurée',
+    'gh.stOn': 'GitHub connecté',
+    'gh.stBusy': 'Synchronisation…',
+    'gh.stAt': x => 'Synchronisé à ' + x,
+    'gh.stErr': m => 'GitHub : ' + m,
   },
 };
 
@@ -6848,6 +7233,7 @@ function gameOver() {
   save.bestWave = Math.max(save.bestWave, G.wave);
   save.bestScore = Math.max(save.bestScore, G.score);
   persist();
+  if (recordGame()) PROF.lastSync = syncNow();
   setTimeout(() => showGameOver(record), 1500);
 }
 
@@ -7195,7 +7581,7 @@ function relabel() {
     b.setAttribute('aria-label', say('el.aria', name, say('el.' + ELS[idx].key + '.tip')));
   });
   $('btn-sound').setAttribute('aria-label', say(AudioFX.muted ? 'aria.soundOff' : 'aria.soundOn'));
-  refreshCodex(); refreshTitle();
+  refreshCodex(); refreshTitle(); relabelProfiles();
   hud = {};            // l'affichage en jeu se réécrit à l'image suivante
   previewKey = '';
   palRect = null;      // les noms changent de largeur
@@ -7256,6 +7642,7 @@ function showGameOver(record) {
   hudEl.classList.add('hidden'); hintEl.classList.add('hidden');
   $('gameover').classList.remove('hidden');
   overShown = true;
+  afterGameSaved();
 }
 
 function refreshTitle() {
@@ -7267,6 +7654,7 @@ function refreshTitle() {
 /* ---------- clavier ---------- */
 window.addEventListener('keydown', e => {
   if (e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (profileKeys(e)) return;
   const c = e.code, go = c === 'Enter' || c === 'Space' || c === 'NumpadEnter';
   if (c === 'KeyL' && G.state !== 'over' && !G.modal) { toggleLang(); return; }
   if (G.state === 'title') { if (go) { e.preventDefault(); startGame(); } return; }
@@ -7447,16 +7835,635 @@ function frame(now) {
   renderer.render(scene, camera);
 }
 
-/* ---------- démarrage ---------- */
+
+/* =====================================================================
+   Joueurs, connexion et classement
+   - Chaque joueur a un nom, une couleur de bloc et un code à 4 chiffres.
+   - Ses records, son grimoire et la liste de ses parties sont gardés dans ce navigateur,
+     et, si la sauvegarde GitHub est connectée, dans le dépôt privé (par défaut scores-anglais) :
+       {dossier}/joueurs/{id}.json  = profil complet d'un joueur
+       {dossier}/classement.json    = résumé de chaque joueur (points par jour), pour le classement
+   - Le jeton GitHub reste sur l'appareil, partagé par tous ses joueurs ; il n'est jamais envoyé ailleurs.
+   ===================================================================== */
+const PLAYERS_KEY = 'stack-protect-players-v1';
+const GH_KEY = 'stack-protect-github-v1';
+const GH_DEFAULT = { owner: 'gerojafka', repo: 'scores-anglais', branch: '', dir: 'donnees-stack-protect' };
+const VOCAB_KEY = 'prochaine-station-anglais-v2';   // « Apprentissage vocabulaire anglais » : son jeton peut resservir
+const KEEP_DAYS = 400;     // parties gardées une à une ; au-delà, elles sont résumées
+const RANK_DAYS = 62;      // jours envoyés dans le classement (de quoi couvrir le mois en cours)
+const BLOCK_COLORS = [
+  ['#ff5a3c', '#b82a14'], ['#ffd23f', '#b87f00'], ['#5fd35a', '#1f7d33'], ['#4fc8ff', '#1778b8'],
+  ['#ff7de0', '#b8309a'], ['#ff9a3c', '#b85a14'], ['#a98bff', '#5a3cb8'], ['#3fe0c0', '#14896f'],
+];
+const darkOf = c => (BLOCK_COLORS.find(p => p[0] === c) || [c, '#241538'])[1];
+
+/* ---------- petits outils ---------- */
+const pad2 = n => String(n).padStart(2, '0');
+function dayKey(d) { d = d || new Date(); return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+function hhmm(ts) { const d = new Date(ts); return pad2(d.getHours()) + ':' + pad2(d.getMinutes()); }
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]); }
+function newId(p) { return (p || 'p') + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function avatar(color, small) {
+  return '<i class="pav' + (small ? ' sm' : '') + '" style="--c:' + esc(color) + ';--d:' + darkOf(color) + '" aria-hidden="true"><i></i><i></i><b></b></i>';
+}
+const sameName = (a, b) => a.trim().toLowerCase() === b.trim().toLowerCase();
+
+// SHA-256 (le code n'est jamais enregistré en clair, ni ici ni sur GitHub)
+function sha256(msg) {
+  const K = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da, 0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2];
+  const bytes = Array.from(new TextEncoder().encode(msg)), l = bytes.length * 8;
+  bytes.push(0x80); while (bytes.length % 64 !== 56) bytes.push(0);
+  for (let i = 7; i >= 0; i--) bytes.push(i > 3 ? 0 : (l >>> (i * 8)) & 255);
+  const H = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19], W = new Array(64);
+  const rotr = (x, n) => (x >>> n) | (x << (32 - n));
+  for (let o = 0; o < bytes.length; o += 64) {
+    for (let i = 0; i < 16; i++) W[i] = (bytes[o + i * 4] << 24) | (bytes[o + i * 4 + 1] << 16) | (bytes[o + i * 4 + 2] << 8) | bytes[o + i * 4 + 3];
+    for (let i = 16; i < 64; i++) {
+      const s0 = rotr(W[i - 15], 7) ^ rotr(W[i - 15], 18) ^ (W[i - 15] >>> 3), s1 = rotr(W[i - 2], 17) ^ rotr(W[i - 2], 19) ^ (W[i - 2] >>> 10);
+      W[i] = (W[i - 16] + s0 + W[i - 7] + s1) | 0;
+    }
+    let [a, b, c, d, e, f, g, h] = H;
+    for (let i = 0; i < 64; i++) {
+      const t1 = (h + (rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25)) + ((e & f) ^ (~e & g)) + K[i] + W[i]) | 0;
+      const t2 = ((rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22)) + ((a & b) ^ (a & c) ^ (b & c))) | 0;
+      h = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;
+    }
+    H[0] = (H[0] + a) | 0; H[1] = (H[1] + b) | 0; H[2] = (H[2] + c) | 0; H[3] = (H[3] + d) | 0;
+    H[4] = (H[4] + e) | 0; H[5] = (H[5] + f) | 0; H[6] = (H[6] + g) | 0; H[7] = (H[7] + h) | 0;
+  }
+  return H.map(x => (x >>> 0).toString(16).padStart(8, '0')).join('');
+}
+const pinHash = (id, pin) => sha256('stack-protect:' + id + ':' + pin);
+
+/* ---------- joueurs de cet appareil ---------- */
+function freshData() {
+  return { bestWave: 0, bestScore: 0, codex: {}, tipsDone: false, kills: 0, log: [], arch: { to: '', s: 0, g: 0 } };
+}
+function fixData(d) {
+  d = Object.assign(freshData(), d || {});
+  d.codex = d.codex || {}; d.log = Array.isArray(d.log) ? d.log : []; d.arch = Object.assign({ to: '', s: 0, g: 0 }, d.arch || {});
+  return d;
+}
+function loadPlayers() {
+  let db = null;
+  try { db = JSON.parse(localStorage.getItem(PLAYERS_KEY) || 'null'); } catch (e) { /* stockage illisible */ }
+  if (!db || !db.players) db = { current: null, players: {} };
+  for (const id in db.players) db.players[id].data = fixData(db.players[id].data);
+  return db;
+}
+function savePlayers() { try { localStorage.setItem(PLAYERS_KEY, JSON.stringify(PROF.db)); } catch (e) { /* stockage plein ou bloqué */ } }
+PROF.db = loadPlayers();
+
+// la partie de « save » qui appartient au joueur : records, grimoire, conseils vus
+function bindPlayer(p) {
+  PROF.cur = p || null;
+  const d = p ? p.data : freshData();
+  save.bestWave = d.bestWave; save.bestScore = d.bestScore; save.codex = d.codex; save.tipsDone = d.tipsDone;
+  PROF.db.current = p ? p.id : null;
+  savePlayers();
+}
+// appelé par persist() : recopie dans le profil ce que le jeu vient de changer
+function storePlayer() {
+  const p = PROF.cur; if (!p || !PROF.db) return;
+  const d = p.data;
+  d.bestWave = Math.max(d.bestWave, save.bestWave); d.bestScore = Math.max(d.bestScore, save.bestScore);
+  d.codex = save.codex; d.tipsDone = d.tipsDone || save.tipsDone;
+  if (p.lang !== save.lang) { p.lang = save.lang; p.pu = Date.now(); }
+  savePlayers();
+}
+
+// une partie : {i: identifiant, t: date, s: score, w: vague}
+const gameDay = g => dayKey(new Date(g.t));
+function pruneLog(d) {
+  const cut = new Date(); cut.setDate(cut.getDate() - KEEP_DAYS); const ck = dayKey(cut);
+  const old = d.log.filter(g => gameDay(g) < ck);
+  if (!old.length) return;
+  d.log = d.log.filter(g => gameDay(g) >= ck);
+  d.arch.s += old.reduce((a, g) => a + g.s, 0); d.arch.g += old.length;
+  if (ck > (d.arch.to || '')) d.arch.to = ck;
+}
+function totals(d) {
+  return { total: d.arch.s + d.log.reduce((a, g) => a + g.s, 0), games: d.arch.g + d.log.length };
+}
+// résumé envoyé dans le classement
+function summary(p) {
+  const d = p.data, tt = totals(d), act = {};
+  const cut = new Date(); cut.setDate(cut.getDate() - RANK_DAYS); const ck = dayKey(cut);
+  for (const g of d.log) {
+    const k = gameDay(g); if (k < ck) continue;
+    const a = act[k] || (act[k] = [0, 0, 0, 0]);   // [points, meilleure partie, parties, meilleure vague]
+    a[0] += g.s; a[1] = Math.max(a[1], g.s); a[2]++; a[3] = Math.max(a[3], g.w);
+  }
+  return { id: p.id, name: p.name, color: p.color, lang: p.lang, best: d.bestScore, wave: d.bestWave, total: tt.total, games: tt.games, act, upd: Date.now() };
+}
+// fusion de deux versions d'un même joueur (cet appareil et GitHub) : on ne perd aucune partie
+function mergeData(L, R) {
+  R = fixData(R);
+  L.bestWave = Math.max(L.bestWave, R.bestWave); L.bestScore = Math.max(L.bestScore, R.bestScore);
+  L.kills = Math.max(L.kills || 0, R.kills || 0);
+  L.tipsDone = L.tipsDone || R.tipsDone;
+  for (const k in R.codex) L.codex[k] = 1;
+  if ((R.arch.to || '') > (L.arch.to || '') || ((R.arch.to || '') === (L.arch.to || '') && R.arch.g > L.arch.g)) L.arch = Object.assign({}, R.arch);
+  const seen = new Set(L.log.map(g => g.i));
+  for (const g of R.log) if (!seen.has(g.i)) { L.log.push(g); seen.add(g.i); }
+  if (L.arch.to) L.log = L.log.filter(g => gameDay(g) >= L.arch.to);
+  L.log.sort((a, b) => a.t - b.t);
+}
+
+/* ---------- sauvegarde GitHub (API « Contents ») ---------- */
+const GH = { cfg: null, rank: null, state: 'off', at: 0, msg: '', busy: null, again: false };
+try { GH.cfg = JSON.parse(localStorage.getItem(GH_KEY) || 'null'); } catch (e) { GH.cfg = null; }
+function ghReady() { const c = GH.cfg; return !!(c && c.token && c.owner && c.repo); }
+function ghSaveCfg() { try { if (GH.cfg) localStorage.setItem(GH_KEY, JSON.stringify(GH.cfg)); else localStorage.removeItem(GH_KEY); } catch (e) { /* idem */ } }
+// jeton déjà saisi dans « Apprentissage vocabulaire anglais » (même site GitHub Pages, même navigateur)
+function vocabCfg() {
+  try { const db = JSON.parse(localStorage.getItem(VOCAB_KEY) || 'null'); const g = db && db.gh; if (g && g.token && g.owner && g.repo) return g; } catch (e) { /* rien */ }
+  return null;
+}
+function ghErr(status) {
+  const m = status === 0 ? say('gh.e0') : status === 401 ? say('gh.e401') : status === 403 ? say('gh.e403')
+    : status === 404 ? say('gh.e404') : status === -1 ? say('gh.eRead') : say('gh.eN', status);
+  const e = new Error(m); e.status = status; return e;
+}
+function b64enc(str) {
+  const bytes = new TextEncoder().encode(str); let bin = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+function b64dec(b64) {
+  const bin = atob(String(b64).replace(/\s/g, '')), bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+async function ghReq(method, path, body, cfg) {
+  const c = cfg || GH.cfg;
+  const url = 'https://api.github.com/repos/' + encodeURIComponent(c.owner) + '/' + encodeURIComponent(c.repo) + (path ? '/' + path : '');
+  const headers = { Accept: 'application/vnd.github+json', Authorization: 'Bearer ' + c.token };
+  if (body) headers['Content-Type'] = 'application/json';
+  let r;
+  try { r = await fetch(url, { method, cache: 'no-store', headers, body: body ? JSON.stringify(body) : undefined }); }
+  catch (e) { throw ghErr(0); }
+  let j = null; try { j = await r.json(); } catch (e) { /* réponse vide */ }
+  return { status: r.status, ok: r.ok, json: j };
+}
+function ghPath(p) {
+  const dir = (GH.cfg.dir || GH_DEFAULT.dir).replace(/^\/+|\/+$/g, '');
+  return 'contents/' + (dir ? dir.split('/').map(encodeURIComponent).join('/') + '/' : '') + p.split('/').map(encodeURIComponent).join('/');
+}
+async function ghGet(p) {
+  const q = GH.cfg.branch ? '?ref=' + encodeURIComponent(GH.cfg.branch) : '';
+  const r = await ghReq('GET', ghPath(p) + q);
+  if (r.status === 404) return null;
+  if (!r.ok) throw ghErr(r.status);
+  let obj = null; try { obj = JSON.parse(b64dec(r.json.content)); } catch (e) { throw ghErr(-1); }
+  return { sha: r.json.sha, obj };
+}
+async function ghPut(p, obj, sha, msg) {
+  const body = { message: msg, content: b64enc(JSON.stringify(obj)) };
+  if (sha) body.sha = sha; if (GH.cfg.branch) body.branch = GH.cfg.branch;
+  const r = await ghReq('PUT', ghPath(p), body);
+  if (r.status === 409 || r.status === 422) { const e = ghErr(409); e.conflict = true; throw e; }
+  if (!r.ok) throw ghErr(r.status);
+}
+// deux appareils écrivent en même temps : on relit et on recommence
+async function withRetry(fn) {
+  for (let i = 0; ; i++) {
+    try { return await fn(); }
+    catch (e) { if (!(e && e.conflict) || i >= 4) throw e; await new Promise(r => setTimeout(r, 250 * (i + 1) + Math.random() * 200)); }
+  }
+}
+async function ghLoadRanking() {
+  const cur = await ghGet('classement.json');
+  GH.rank = cur && cur.obj && cur.obj.players ? cur.obj : { v: 1, players: {} };
+  return GH.rank;
+}
+async function ghUpdateRanking(mut) {
+  return withRetry(async () => {
+    const cur = await ghGet('classement.json');
+    const rk = cur && cur.obj && cur.obj.players ? cur.obj : { v: 1, game: 'stack-protect', players: {} };
+    mut(rk); rk.updated = Date.now();
+    await ghPut('classement.json', rk, cur ? cur.sha : null, 'Classement Stack & Protect');
+    return rk;
+  });
+}
+// envoie un joueur : on relit sa fiche sur GitHub, on fusionne, on réécrit, puis le classement
+async function syncPlayer(p) {
+  const path = 'joueurs/' + p.id + '.json';
+  await withRetry(async () => {
+    const cur = await ghGet(path);
+    if (cur && cur.obj) {
+      const o = cur.obj;
+      if ((o.pu || 0) > (p.pu || 0)) { p.name = o.name || p.name; p.color = o.color || p.color; p.pinh = o.pinh || p.pinh; p.lang = o.lang === 'fr' ? 'fr' : 'en'; p.pu = o.pu; }
+      if (o.data) mergeData(p.data, o.data);
+    }
+    pruneLog(p.data);
+    const out = { v: 1, game: 'stack-protect', id: p.id, name: p.name, color: p.color, pinh: p.pinh, lang: p.lang, created: p.created, pu: p.pu || 0, saved: Date.now(), data: p.data };
+    await ghPut(path, out, cur ? cur.sha : null, 'Joueur ' + p.name);
+  });
+  return ghUpdateRanking(rk => { rk.players[p.id] = summary(p); });
+}
+function setGh(state, msg) {
+  GH.state = state; GH.msg = msg || '';
+  if (state === 'ok') GH.at = Date.now();
+  const b = $('who-cloud'); if (!b) return;
+  b.className = 'tool cloud' + (!ghReady() ? '' : state === 'ok' ? ' ok' : state === 'err' ? ' err' : state === 'busy' ? ' busy' : '');
+  const t = !ghReady() ? say('gh.stOff') : state === 'err' ? say('gh.stErr', GH.msg) : state === 'busy' ? say('gh.stBusy') : GH.at ? say('gh.stAt', hhmm(GH.at)) : say('gh.stOn');
+  b.title = t; b.setAttribute('aria-label', t);
+}
+// synchronise le joueur connecté ; renvoie true si GitHub est à jour
+function syncNow() {
+  if (!ghReady() || !PROF.cur) return Promise.resolve(false);
+  if (GH.busy) { GH.again = true; return GH.busy; }
+  const p = PROF.cur;
+  setGh('busy');
+  GH.busy = (async () => {
+    try {
+      GH.rank = await syncPlayer(p);
+      if (PROF.cur === p) bindPlayer(p); else savePlayers();
+      setGh('ok');
+      return true;
+    } catch (e) {
+      setGh('err', (e && e.message) || String(e));
+      return false;
+    } finally {
+      GH.busy = null;
+      if (GH.again) { GH.again = false; setTimeout(syncNow, 300); }
+    }
+  })();
+  return GH.busy;
+}
+
+/* ---------- fin de partie : le score est enregistré ---------- */
+function recordGame() {
+  const p = PROF.cur; if (!p || G.score <= 0 && G.wave <= 0) return null;
+  p.data.log.push({ i: newId('g'), t: Date.now(), s: Math.round(G.score), w: G.wave });
+  p.data.kills = (p.data.kills || 0) + G.kills;
+  pruneLog(p.data);
+  storePlayer();
+  return p;
+}
+async function afterGameSaved() {
+  const st = $('go-sync'), td = $('go-today');
+  if (!PROF.cur) { st.textContent = ''; td.textContent = ''; return; }
+  const showToday = () => {
+    const list = rankList('day', 'sum'), me = list.findIndex(o => o.e.id === PROF.cur.id);
+    td.textContent = me >= 0 && list.length > 1 ? say('over.today', me + 1, list.length) : '';
+  };
+  st.classList.remove('err');
+  if (!ghReady()) { st.textContent = say('over.savedLocal'); showToday(); return; }
+  st.textContent = say('over.saving'); showToday();
+  const ok = await (PROF.lastSync || syncNow());
+  PROF.lastSync = null;
+  if (G.state !== 'over') return;
+  if (ok) st.textContent = say('over.savedGh');
+  else { st.textContent = say('over.saveErr', GH.msg); st.classList.add('err'); }
+  showToday();
+}
+
+/* ---------- classement ---------- */
+const RK = { period: 'day', mode: 'sum', err: null, loading: false };
+function periodStart(period) {
+  const d = new Date(); d.setHours(0, 0, 0, 0);
+  if (period === 'week') d.setDate(d.getDate() - ((d.getDay() + 6) % 7));   // lundi
+  else if (period === 'month') d.setDate(1);
+  return dayKey(d);
+}
+function metric(e, period, mode) {
+  if (period === 'all') return mode === 'sum' ? (e.total || 0) : (e.best || 0);
+  const from = periodStart(period), to = dayKey();
+  let v = 0, n = 0;
+  for (const k in (e.act || {})) {
+    if (k < from || k > to) continue;
+    const a = e.act[k]; n += a[2];
+    v = mode === 'sum' ? v + a[0] : Math.max(v, a[1]);
+  }
+  return n ? v : -1;   // -1 : pas joué sur la période
+}
+function rankList(period, mode) {
+  const all = {};
+  if (GH.rank) for (const id in GH.rank.players) all[id] = GH.rank.players[id];
+  for (const id in PROF.db.players) {
+    const loc = summary(PROF.db.players[id]), rem = all[id];
+    if (!rem || loc.games >= (rem.games || 0)) all[id] = loc;
+  }
+  return Object.values(all).map(e => ({ e, v: metric(e, period, mode) }))
+    .filter(o => period === 'all' ? (o.e.games || 0) > 0 : o.v >= 0)
+    .sort((a, b) => (b.v - a.v) || ((b.e.best || 0) - (a.e.best || 0)));
+}
+function drawRank() {
+  $('rk-period').querySelectorAll('[data-p]').forEach(b => b.setAttribute('aria-checked', b.dataset.p === RK.period));
+  $('rk-mode').querySelectorAll('[data-m]').forEach(b => b.setAttribute('aria-checked', b.dataset.m === RK.mode));
+  const list = rankList(RK.period, RK.mode), me = PROF.cur && PROF.cur.id;
+  const unit = say(RK.mode === 'sum' ? 'rk.unitSum' : 'rk.unitBest');
+  $('rk-list').innerHTML = list.length ? list.map((o, i) => {
+    const e = o.e, mine = e.id === me;
+    return '<li><div class="prow' + (mine ? ' me' : '') + '"><span class="pos' + (i < 3 ? ' p' + (i + 1) : '') + '">' + (i + 1) + '</span>' + avatar(e.color, true) +
+      '<span class="who"><b>' + esc(e.name) + (mine ? ' (' + say('rk.you') + ')' : '') + '</b><small>' +
+      esc(say('rk.row', say('rank.' + rankOf(e.wave || 0)), say('games', e.games || 0), e.wave || 0)) + '</small></span>' +
+      '<span class="sc"><b>' + fmt(o.v) + '</b><small>' + esc(unit) + '</small></span></div></li>';
+  }).join('') : '<li class="note">' + esc(RK.loading ? say('rk.loading') : say('rk.empty')) + '</li>';
+  const note = !ghReady() ? say('rk.local') : RK.err ? say('gh.stErr', RK.err) : GH.at ? say('rk.synced', hhmm(GH.at)) : '';
+  $('rk-note').textContent = (RK.period === 'week' || RK.period === 'month' ? say('rk.weekNote') + ' ' : '') + note;
+}
+async function openRank() {
+  AudioFX.init(); AudioFX.click();
+  $('rank').classList.remove('hidden');
+  RK.err = null; RK.loading = ghReady() && !GH.rank;
+  drawRank();
+  if (!ghReady()) return;
+  try {
+    if (PROF.cur) { const ok = await syncNow(); if (!ok) throw new Error(GH.msg); }
+    else await ghLoadRanking();
+  } catch (e) { RK.err = (e && e.message) || String(e); }
+  RK.loading = false;
+  if (!$('rank').classList.contains('hidden')) drawRank();
+}
+function closeRank() { $('rank').classList.add('hidden'); AudioFX.click(); }
+$('rk-period').addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (!b) return; RK.period = b.dataset.p; AudioFX.click(); drawRank(); });
+$('rk-mode').addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (!b) return; RK.mode = b.dataset.m; AudioFX.click(); drawRank(); });
+$('rk-refresh').addEventListener('click', () => { GH.rank = null; openRank(); });
+$('rk-close').addEventListener('click', closeRank);
+$('rank').addEventListener('click', e => { if (e.target.id === 'rank') closeRank(); });
+
+/* ---------- fenêtre (code, GitHub) ---------- */
+let modalOnEnter = null;
+function openModal(html, onEnter) {
+  $('modal-card').className = 'card mcard';
+  $('modal-card').innerHTML = html;
+  $('modal').classList.remove('hidden');
+  modalOnEnter = onEnter || null;
+  const f = $('modal-card').querySelector('[data-autofocus]');
+  if (f) setTimeout(() => f.focus(), 30);
+}
+function closeModal() { $('modal').classList.add('hidden'); $('modal-card').innerHTML = ''; modalOnEnter = null; }
+$('modal').addEventListener('click', e => { if (e.target.id === 'modal' || e.target.closest('[data-close]')) { closeModal(); AudioFX.click(); } });
+
+/* ---------- page d'accueil : une question à la fois (nom, puis code) ----------
+   étape « name » : on tape son nom de joueur (ou on le touche dans la liste)
+   étape « code » : joueur connu → son code à 4 chiffres
+   étape « new »  : nom libre → on choisit son bloc et on crée son code */
+const W = { step: 'name', name: '', entry: null, color: null, remote: null, remoteErr: null, loading: null, busy: false };
+function showWho() {
+  closeModal(); $('rank').classList.add('hidden');
+  $('title').classList.add('hidden'); $('gameover').classList.add('hidden');
+  hudEl.classList.add('hidden'); hintEl.classList.add('hidden');
+  if (G.state !== 'title') { G.state = 'title'; demoScene(); }
+  bindPlayer(null);
+  Object.assign(W, { step: 'name', entry: null, remote: null, remoteErr: null, busy: false });
+  $('who').classList.remove('hidden');
+  renderWho();
+  loadRemotePlayers();
+}
+function loadRemotePlayers() {
+  if (!ghReady()) return Promise.resolve();
+  if (!W.loading) {
+    W.loading = ghLoadRanking().then(() => setGh('ok')).catch(e => setGh('err', e.message))
+      .then(() => { W.loading = null; if (!$('who').classList.contains('hidden') && W.step === 'name') renderKnown(); });
+  }
+  return W.loading;
+}
+function whoEntries() {
+  const out = Object.values(PROF.db.players).map(p => ({ id: p.id, name: p.name, color: p.color, best: p.data.bestScore, wave: p.data.bestWave, local: true, trust: !!p.trust, last: p.last || 0 }));
+  if (GH.rank) for (const id in GH.rank.players) {
+    const r = GH.rank.players[id], l = out.find(o => o.id === id);
+    if (l) l.best = Math.max(l.best, r.best || 0);
+    else out.push({ id, name: r.name, color: r.color, best: r.best || 0, wave: r.wave || 0, local: false, last: 0 });
+  }
+  // d'abord les joueurs de cet appareil (le dernier venu en tête), puis ceux de GitHub par record
+  return out.sort((a, b) => (b.local - a.local) || (b.last - a.last) || (b.best - a.best));
+}
+const arrowBtn = label => '<button type="submit" class="who-next" aria-label="' + esc(label) + '" title="' + esc(label) + '"><svg viewBox="0 0 64 40" aria-hidden="true"><path d="M6 5h52L32 35z"/></svg></button>';
+function renderWho() {
+  const box = $('who-step');
+  let h = '';
+  if (W.step === 'name') {
+    h = '<form id="w-form" novalidate autocomplete="off"><h2>' + esc(say('who.askName')) + '</h2>' +
+      '<input id="w-name" class="who-input" maxlength="20" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="' + esc(say('who.namePh')) + '" value="' + esc(W.name) + '">' +
+      '<p id="w-err" class="who-err" role="alert"></p>' + arrowBtn(say('who.next')) + '</form>' +
+      '<div id="who-known"></div>';
+  } else if (W.step === 'code') {
+    const e = W.entry;
+    h = '<form id="w-form" novalidate autocomplete="off"><div class="who-me">' + avatar(e.color) + '<b>' + esc(e.name) + '</b></div>' +
+      '<h2>' + esc(say('who.askCode')) + '</h2>' +
+      '<input id="w-code" class="who-input pin" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="••••" aria-label="' + esc(say('pin.aria')) + '">' +
+      '<label class="who-check"><input type="checkbox" id="w-trust"><span>' + esc(say('su.trust')) + '</span></label>' +
+      '<p id="w-err" class="who-err" role="alert"></p>' + arrowBtn(say('pin.ok')) +
+      '<button type="button" class="who-back" id="w-back">‹ ' + esc(say('who.notMe')) + '</button></form>';
+  } else {
+    h = '<form id="w-form" novalidate autocomplete="off"><div class="who-me">' + avatar(W.color) + '<b>' + esc(W.name) + '</b></div>' +
+      '<h2>' + esc(say('who.newTitle')) + '</h2>' +
+      '<p class="who-label">' + esc(say('who.pickBlock')) + '</p><div id="w-colors" class="swatches">' +
+      BLOCK_COLORS.map(c => '<button type="button" class="sw" data-c="' + c[0] + '" aria-pressed="' + (c[0] === W.color) + '" aria-label="' + esc(say('su.colorAria')) + '">' + avatar(c[0], true) + '</button>').join('') + '</div>' +
+      '<p class="who-label">' + esc(say('who.makeCode')) + '</p>' +
+      '<input id="w-code" class="who-input pin" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="••••" aria-label="' + esc(say('pin.aria')) + '">' +
+      '<p class="who-note">' + esc(say('su.codeNote')) + '</p>' +
+      '<label class="who-check"><input type="checkbox" id="w-trust"><span>' + esc(say('su.trust')) + '</span></label>' +
+      '<p id="w-err" class="who-err" role="alert"></p>' + arrowBtn(say('who.play')) +
+      '<button type="button" class="who-back" id="w-back">‹ ' + esc(say('who.back')) + '</button></form>';
+  }
+  box.innerHTML = h;
+  box.dataset.step = W.step;
+  $('w-form').addEventListener('submit', e => { e.preventDefault(); AudioFX.init(); whoNext(); });
+  const back = $('w-back'); if (back) back.addEventListener('click', () => { AudioFX.click(); W.step = 'name'; W.entry = null; renderWho(); });
+  const nm = $('w-name'); if (nm) nm.addEventListener('input', () => { W.name = nm.value; $('w-err').textContent = ''; });
+  const cd = $('w-code');
+  if (cd) cd.addEventListener('input', () => {
+    cd.value = cd.value.replace(/\D/g, '').slice(0, 4); $('w-err').textContent = '';
+    if (W.step === 'code' && cd.value.length === 4) whoNext();
+  });
+  const cols = $('w-colors');
+  if (cols) cols.addEventListener('click', e => {
+    const b = e.target.closest('[data-c]'); if (!b) return;
+    W.color = b.dataset.c; AudioFX.init(); AudioFX.click();
+    cols.querySelectorAll('.sw').forEach(x => x.setAttribute('aria-pressed', x === b));
+    box.querySelector('.who-me').innerHTML = avatar(W.color) + '<b>' + esc(W.name) + '</b>';
+  });
+  if (W.step === 'name') renderKnown();
+  // le clavier s'ouvre tout seul sur ordinateur ; sur tablette, seulement à l'étape du code
+  const f = W.step === 'name' ? nm : cd;
+  if (f && (W.step !== 'name' || !matchMedia('(hover:none)').matches)) setTimeout(() => f.focus(), 60);
+  $('who-hint').innerHTML = ghReady() ? '' : '<p>☁ <b>' + esc(say('gh.hintTitle')) + '</b> ' + esc(say('gh.hintText')) + '</p>';
+  setGh(GH.state, GH.msg);
+}
+// « Déjà inscrits » : touche ton nom
+function renderKnown() {
+  const box = $('who-known'); if (!box) return;
+  const list = whoEntries();
+  box.innerHTML = list.length ? '<p class="who-label">' + esc(say('who.known')) + '</p><div class="who-chips">' +
+    list.map(o => '<button type="button" class="who-chip" data-pid="' + esc(o.id) + '">' + avatar(o.color, true) + '<span>' + esc(o.name) + '</span>' +
+      (o.local ? '' : '<i class="cl" title="' + esc(say('who.cloud')) + '">☁</i>') + '</button>').join('') + '</div>'
+    : (W.loading ? '<p class="who-label">' + esc(say('who.loading')) + '</p>' : '');
+  box.querySelectorAll('[data-pid]').forEach(b => b.addEventListener('click', () => {
+    AudioFX.init(); AudioFX.click();
+    const o = whoEntries().find(x => x.id === b.dataset.pid); if (o) pickEntry(o);
+  }));
+}
+function pickEntry(o) {
+  W.name = o.name;
+  if (o.local) {
+    const p = PROF.db.players[o.id];
+    if (p.trust) { openPlayer(p); return; }
+    W.entry = o; W.step = 'code'; renderWho(); return;
+  }
+  // joueur venu d'un autre appareil : sa fiche se charge pendant qu'il tape son code
+  W.entry = o; W.remote = null; W.remoteErr = null;
+  W.remoteP = ghGet('joueurs/' + o.id + '.json').then(cur => { W.remote = cur && cur.obj; if (!W.remote) W.remoteErr = say('pin.notFound'); }).catch(e => { W.remoteErr = e.message; });
+  W.step = 'code'; renderWho();
+}
+async function whoNext() {
+  if (W.busy) return;
+  const err = $('w-err');
+  const fail = (m, el) => { err.textContent = m; AudioFX.click(); if (el) { bump(el, 'shake'); el.focus(); } };
+  if (W.step === 'name') {
+    const name = $('w-name').value.trim().replace(/\s+/g, ' ');
+    if (!name) return fail(say('su.errName'), $('w-name'));
+    if (W.loading) err.textContent = say('who.loading');
+    W.busy = true; await loadRemotePlayers(); W.busy = false;   // pour ne pas créer un doublon d'un joueur de GitHub
+    err.textContent = '';
+    const o = whoEntries().find(x => sameName(x.name, name));
+    if (o) { AudioFX.click(); pickEntry(o); return; }
+    W.name = name;
+    const used = new Set(whoEntries().map(x => x.color));
+    W.color = (BLOCK_COLORS.find(c => !used.has(c[0])) || BLOCK_COLORS[Object.keys(PROF.db.players).length % BLOCK_COLORS.length])[0];
+    W.step = 'new'; AudioFX.click(); renderWho();
+    return;
+  }
+  const inp = $('w-code'), code = inp.value.trim(), trust = $('w-trust').checked;
+  if (!/^\d{4}$/.test(code)) return fail(say('su.errCode'), inp);
+  if (W.step === 'code') {
+    const o = W.entry;
+    let p = null;
+    if (o.local) {
+      p = PROF.db.players[o.id];
+      if (pinHash(p.id, code) !== p.pinh) { inp.value = ''; return fail(say('pin.bad'), inp); }
+    } else {
+      W.busy = true; err.textContent = say('pin.fetch');
+      await W.remoteP; W.busy = false; err.textContent = '';
+      if (W.remoteErr) return fail(W.remoteErr);
+      const r = W.remote;
+      if (pinHash(o.id, code) !== r.pinh) { inp.value = ''; return fail(say('pin.bad'), inp); }
+      p = { id: o.id, name: r.name, color: r.color, pinh: r.pinh, lang: r.lang === 'fr' ? 'fr' : 'en', created: r.created, pu: r.pu || 0, data: fixData(r.data) };
+      PROF.db.players[o.id] = p;
+    }
+    p.trust = trust || !!p.trust;
+    openPlayer(p);
+    return;
+  }
+  // nouveau joueur
+  const id = newId('p'), now = Date.now();
+  const p = { id, name: W.name, color: W.color, pinh: pinHash(id, code), lang: LANG, created: now, pu: now, trust, last: now, data: freshData() };
+  // les records joués avant les profils vont au premier joueur créé sur cet appareil
+  if (!device.migrated && !Object.keys(PROF.db.players).length && (device.bestWave || device.codex)) {
+    p.data.bestWave = device.bestWave || 0; p.data.bestScore = device.bestScore || 0;
+    p.data.codex = Object.assign({}, device.codex || {}); p.data.tipsDone = !!device.tipsDone;
+  }
+  device.migrated = true;
+  PROF.db.players[id] = p;
+  W.name = '';
+  openPlayer(p);
+}
+
+function openPlayer(p) {
+  p.last = Date.now();
+  bindPlayer(p);
+  setLang(p.lang === 'fr' ? 'fr' : 'en');
+  $('who').classList.add('hidden');
+  $('title').classList.remove('hidden');
+  refreshChip(); refreshTitle();
+  AudioFX.fusion(1);
+  if (ghReady()) syncNow().then(() => { if (PROF.cur === p) { refreshTitle(); refreshChip(); } });
+}
+function refreshChip() {
+  const p = PROF.cur, c = $('who-chip'); if (!c) return;
+  c.classList.toggle('hidden', !p);
+  if (!p) return;
+  c.innerHTML = avatar(p.color, true) + '<span><b>' + esc(p.name) + '</b><small>' + esc(say('chip.switch')) + '</small></span>';
+  c.setAttribute('aria-label', say('chip.aria', p.name));
+}
+$('who-chip').addEventListener('click', () => { AudioFX.init(); AudioFX.click(); showWho(); });
+$('who-rank').addEventListener('click', openRank);
+$('who-cloud').addEventListener('click', openGithub);
+$('title-rank').addEventListener('click', openRank);
+$('go-rank-btn').addEventListener('click', openRank);
+$('go-switch').addEventListener('click', () => { AudioFX.init(); AudioFX.click(); showWho(); });
+
+/* ---------- fenêtre de connexion GitHub ---------- */
+function openGithub() {
+  AudioFX.init(); AudioFX.click();
+  const v = vocabCfg();
+  const c = GH.cfg || (v ? { owner: v.owner, repo: v.repo, branch: v.branch || '', dir: GH_DEFAULT.dir, token: v.token } : Object.assign({ token: '' }, GH_DEFAULT));
+  const field = (id, label, val, extra) => '<label class="field"><span>' + esc(say(label)) + '</span><input id="' + id + '" value="' + esc(val || '') + '" autocomplete="off" spellcheck="false" autocapitalize="off"' + (extra || '') + '></label>';
+  openModal('<h2>☁ ' + esc(say('gh.title')) + '</h2>' +
+    '<p class="sub">' + esc(say('gh.sub')) + '</p>' +
+    '<div class="two">' + field('gh-owner', 'gh.owner', c.owner) + field('gh-repo', 'gh.repo', c.repo) + '</div>' +
+    '<div class="two">' + field('gh-branch', 'gh.branch', c.branch, ' placeholder="main"') + field('gh-dir', 'gh.dir', c.dir || GH_DEFAULT.dir) + '</div>' +
+    field('gh-token', 'gh.token', c.token, ' type="password" placeholder="github_pat_…"') +
+    '<p id="gh-stat" class="ghstat' + (!GH.cfg && v ? ' info' : '') + '" role="status">' + (!GH.cfg && v ? esc(say('gh.reuse')) : '') + '</p>' +
+    '<details class="help"><summary>' + esc(say('gh.help')) + '</summary><ol><li>' + esc(say('gh.h1')) + '</li><li>' + esc(say('gh.h2')) + '</li><li>' + esc(say('gh.h3')) + '</li><li>' + esc(say('gh.h4')) + '</li></ol></details>' +
+    '<div class="mrow"><button type="button" class="btn go" id="gh-test" data-autofocus>' + esc(say('gh.test')) + '</button>' +
+    (ghReady() ? '<button type="button" class="btn danger" id="gh-off">' + esc(say('gh.off')) + '</button>' : '') +
+    '<button type="button" class="btn ghost" data-close>' + esc(say('gh.close')) + '</button></div>',
+  () => ghSaveForm());
+  $('modal-card').classList.add('wide');
+  $('gh-test').addEventListener('click', ghSaveForm);
+  const off = $('gh-off');
+  if (off) off.addEventListener('click', () => { GH.cfg = null; GH.rank = null; ghSaveCfg(); setGh('off'); ghStatus(say('gh.offDone'), 'ok'); off.remove(); if (!$('who').classList.contains('hidden')) renderWho(); });
+}
+function ghStatus(msg, cls) { const el = $('gh-stat'); if (el) { el.textContent = msg; el.className = 'ghstat ' + (cls || ''); } }
+async function ghSaveForm() {
+  let owner = $('gh-owner').value.trim(), repo = $('gh-repo').value.trim();
+  const m = /github\.com\/([^\/\s]+)\/([^\/\s#?]+)/i.exec(owner + ' ' + repo) || /^([^\/\s]+)\/([^\/\s]+)$/.exec(owner);
+  if (m) { owner = m[1]; repo = m[2].replace(/\.git$/, ''); }
+  const token = $('gh-token').value.trim();
+  if (!owner || !repo || !token) { ghStatus(say('gh.missing'), 'err'); return; }
+  const cfg = { owner, repo, branch: $('gh-branch').value.trim(), dir: ($('gh-dir').value.trim() || GH_DEFAULT.dir).replace(/^\/+|\/+$/g, ''), token };
+  ghStatus(say('gh.testing'));
+  try {
+    const r = await ghReq('GET', '', null, cfg);
+    if (!r.ok) throw ghErr(r.status);
+    if (r.json && r.json.permissions && r.json.permissions.push === false) throw new Error(say('gh.readOnly'));
+    GH.cfg = cfg; GH.rank = null; ghSaveCfg();
+    ghStatus(say('gh.ok', owner + '/' + repo), 'ok');
+    if (PROF.cur) await syncNow(); else { await ghLoadRanking(); setGh('ok'); }
+    if (!$('who').classList.contains('hidden') && W.step === 'name') renderWho();
+    if (!$('rank').classList.contains('hidden')) drawRank();
+  } catch (e) { ghStatus((e && e.message) || String(e), 'err'); }
+}
+
+// raccourcis clavier quand une de ces fenêtres est ouverte ; renvoie true si la touche est prise ici
+function profileKeys(e) {
+  const modalOn = !$('modal').classList.contains('hidden'), rankOn = !$('rank').classList.contains('hidden'), whoOn = !$('who').classList.contains('hidden');
+  if (modalOn) {
+    if (e.code === 'Escape') closeModal();
+    else if ((e.code === 'Enter' || e.code === 'NumpadEnter') && modalOnEnter && e.target.tagName !== 'BUTTON') { e.preventDefault(); modalOnEnter(); }
+    return true;
+  }
+  if (rankOn) { if (e.code === 'Escape') closeRank(); return true; }
+  if (whoOn) return true;
+  return e.target && (e.target.tagName === 'INPUT');
+}
+// textes de ces écrans quand la langue change
+function relabelProfiles() {
+  setGh(GH.state, GH.msg);
+  refreshChip();
+  if (!$('who').classList.contains('hidden')) renderWho();
+  if (!$('rank').classList.contains('hidden')) drawRank();
+}
+
+/* ---------- démarrage : page d'accueil « Qui joue ? » ---------- */
 resize();
 updateCamera(0);
 demoScene();
 relabel();
 refreshPalette();
+showWho();
 requestAnimationFrame(frame);
 
 // petite porte d'entrée pour les tests et les curieux
-window.SP = { say, setLang, lang: () => LANG, I18N, G, save, TUNE, MTYPES, ELS_ALL: ELS, placeAt, sellAt, startWave, startGame, rotateView, spawnMonster, portals, ELS, REACTIONS, toScreen, cellX, cellZ, nextCell, dist, PORTAL_K, blockCost,
+window.SP = { PROF, GH, rankList, summary, mergeData, pinHash, sha256, syncNow, showWho, say, setLang, lang: () => LANG, I18N, G, save, TUNE, MTYPES, ELS_ALL: ELS, placeAt, sellAt, startWave, startGame, rotateView, spawnMonster, portals, ELS, REACTIONS, toScreen, cellX, cellZ, nextCell, dist, PORTAL_K, blockCost,
   stepRaw: dt => stepWorld(dt),
   step: (n, dt) => { for (let i = 0; i < n && G.state === 'play'; i++) { if (G.modal === 'perks') $('perk-list').children[0].click(); stepWorld(dt); } }, stats: () => ({ particles: pCount, monsters: G.monsters.length, zones: G.zones.size, calls: renderer.info.render.calls }) };
 
