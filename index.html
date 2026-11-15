@@ -366,6 +366,8 @@ input{font:inherit;color:inherit;-webkit-user-select:text;user-select:text;touch
 .tool.cloud.ok::after{background:var(--nature)} .tool.cloud.err::after{background:var(--rose)} .tool.cloud.busy::after{background:var(--foudre);animation:throb .5s infinite alternate}
 .who-hint{position:relative;z-index:1;margin-top:14px;max-width:470px;text-align:center;font-size:13px;line-height:1.4;opacity:.85}
 .who-hint:empty{display:none}
+.ghhint{background:#e3f1ff;border:3px solid var(--ink);border-radius:16px;padding:12px 14px;box-shadow:0 4px 0 var(--ink);color:var(--ink);opacity:1}
+.ghhint p{margin:6px 0 10px;font-size:13px}
 .field{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:900;border:0}
 .field input{font-family:var(--display);font-weight:400;font-size:22px;padding:9px 12px;border:3px solid var(--ink);border-radius:13px;background:#fff;color:var(--ink);width:100%;outline:none}
 .field input:focus{box-shadow:0 0 0 3px var(--glace)}
@@ -5261,6 +5263,7 @@ const I18N = {
     'who.loading': 'Looking for the players on GitHub…',
     'games': n => n + (n > 1 ? ' games' : ' game'),
     'gh.hintTitle': 'Already played on another device?',
+    'gh.hintBtn': 'Find my players',
     'gh.hintText': 'Connect the GitHub save once on this device: the players and the leaderboard of every device show up here.',
     'su.colorAria': 'Color',
     'su.codeNote': "You'll type it to play. It stops someone else from using your player by mistake. It is not real security.",
@@ -5487,6 +5490,7 @@ const I18N = {
     'who.loading': 'Recherche des joueurs sur GitHub…',
     'games': n => n + (n > 1 ? ' parties' : ' partie'),
     'gh.hintTitle': 'Déjà joué sur un autre appareil ?',
+    'gh.hintBtn': 'Retrouver mes joueurs',
     'gh.hintText': 'Connecte la sauvegarde GitHub une fois sur cet appareil : les joueurs et le classement de tous les appareils apparaissent ici.',
     'su.colorAria': 'Couleur',
     'su.codeNote': 'Tu le taperas pour jouer. Il évite qu’un autre joueur prenne ton profil par erreur. Ce n’est pas une vraie protection.',
@@ -8324,7 +8328,8 @@ function renderWho() {
   // le clavier s'ouvre tout seul sur ordinateur ; sur tablette, seulement à l'étape du code
   const f = W.step === 'name' ? nm : cd;
   if (f && (W.step !== 'name' || !matchMedia('(hover:none)').matches)) setTimeout(() => f.focus(), 60);
-  $('who-hint').innerHTML = ghReady() ? '' : '<p>☁ <b>' + esc(say('gh.hintTitle')) + '</b> ' + esc(say('gh.hintText')) + '</p>';
+  $('who-hint').innerHTML = ghReady() ? '' : '<div class="ghhint"><b>☁ ' + esc(say('gh.hintTitle')) + '</b><p>' + esc(say('gh.hintText')) + '</p><button type="button" class="btn sm go" id="who-hint-btn">☁ ' + esc(say('gh.hintBtn')) + '</button></div>';
+  const hb = $('who-hint-btn'); if (hb) hb.addEventListener('click', openGithub);
   setGh(GH.state, GH.msg);
 }
 // « Déjà inscrits » : touche ton nom
