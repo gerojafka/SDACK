@@ -438,6 +438,12 @@ input{font:inherit;color:inherit;-webkit-user-select:text;user-select:text;touch
 .prow .pos{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:17px;background:#f6e6c4;border:2px solid var(--ink)}
 .prow .pos.p1{background:var(--foudre)} .prow .pos.p2{background:#dfe6f2} .prow .pos.p3{background:#f0b07a}
 .prow.me{background:#fff0a8}
+
+/* sortir du jeu */
+#quit .card{gap:14px}
+#quit .btn{min-width:200px}
+.touchkeys{display:none;font-size:13px;opacity:.8;text-shadow:var(--outline-sm)}
+@media (hover:none){.touchkeys{display:block}}
 </style>
 </head>
 <body>
@@ -467,6 +473,7 @@ input{font:inherit;color:inherit;-webkit-user-select:text;user-select:text;touch
         <button id="btn-speed" class="tool" type="button" data-i18n-aria="aria.speed" aria-label="Change game speed">×1</button>
         <button id="btn-pause" class="tool" type="button" data-i18n-aria="aria.pause" aria-label="Pause"><svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg></button>
         <button id="btn-sound" class="tool" type="button" aria-label="Mute sound"><svg viewBox="0 0 24 24"><path d="M4 9.500v5h3.500l4.500 4v-13l-4.500 4z"/><path class="wave" d="M15.500 9a4.500 4.500 0 0 1 0 6M18 6.500a8 8 0 0 1 0 11"/><path class="mute" d="M15.500 9.500l5 5M20.500 9.500l-5 5"/></svg></button>
+        <button id="btn-quit" class="tool" type="button" data-i18n-aria="aria.quit" aria-label="Quit the game"><svg viewBox="0 0 24 24"><path d="M13.5 4.5h5v15h-5"/><path d="M9.5 8l-4 4 4 4M5.5 12h10"/></svg></button>
         <button id="btn-codex" class="tool wide" type="button" data-i18n-aria="aria.codex" aria-label="Open the reaction grimoire"><svg viewBox="0 0 24 24"><path d="M5 4.500h10.500a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3z"/><path d="M5 16.500a3 3 0 0 1 3-3h10.500"/></svg><b id="codex-badge">0/6</b></button>
       </div>
     </div>
@@ -504,6 +511,7 @@ input{font:inherit;color:inherit;-webkit-user-select:text;user-select:text;touch
     <button id="btn-play" class="btn go big" type="button" data-i18n="title.play">Play</button>
     <button id="title-rank" class="btn sun sm" type="button">🏆 <span data-i18n="rk.btn">Leaderboard</span></button>
     <p id="title-record" class="record hidden"></p>
+    <p class="touchkeys" data-i18n="title.touch">Two fingers on the island: twist or swipe to turn it.</p>
     <p class="keys" data-i18n="title.keys">Click or tap to place, right-click to remove, arrow keys to rotate the view.</p>
   </div>
 </section>
@@ -536,6 +544,7 @@ input{font:inherit;color:inherit;-webkit-user-select:text;user-select:text;touch
     <h2 data-i18n="pause.title">Paused</h2>
     <button id="btn-resume" class="btn go" type="button" data-i18n="pause.resume">Resume</button>
     <button id="btn-restart" class="btn ghost" type="button" data-i18n="pause.restart">Restart game</button>
+    <button id="btn-quit-pause" class="btn ghost" type="button" data-i18n="pause.quit">Quit the game</button>
     <button class="lang" type="button" aria-label="Language: English. Switch to French"><span data-l="fr"><i class="flag fr"></i>FR</span><span data-l="en" class="on"><i class="flag us"></i>US</span></button>
   </div>
 </section>
@@ -603,6 +612,16 @@ input{font:inherit;color:inherit;-webkit-user-select:text;user-select:text;touch
 <!-- fenêtre : code du joueur, réglages GitHub -->
 <section id="modal" class="overlay hidden" role="dialog" aria-modal="true">
   <div id="modal-card" class="card mcard"></div>
+</section>
+
+<!-- sortir du jeu (bouton porte, ou menu Pause) -->
+<section id="quit" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="quit-title">
+  <div class="card small">
+    <h2 id="quit-title" data-i18n="quit.title">Quit the game?</h2>
+    <p id="quit-note" class="note"></p>
+    <button id="quit-yes" class="btn danger" type="button" data-i18n="quit.yes">Quit</button>
+    <button id="quit-no" class="btn go" type="button" data-i18n="quit.no">Resume</button>
+  </div>
 </section>
 
 <script>
@@ -5309,6 +5328,16 @@ const I18N = {
     'gh.stBusy': 'Syncing…',
     'gh.stAt': x => 'Synced at ' + x,
     'gh.stErr': m => 'GitHub: ' + m,
+
+    // sortir du jeu, tourner l'île à deux doigts
+    'aria.quit': 'Quit the game',
+    'quit.title': 'Quit the game?',
+    'quit.note': s => 'Your score of ' + s + ' points will be saved.',
+    'quit.none': 'Nothing to save yet.',
+    'quit.yes': 'Quit',
+    'quit.no': 'Resume',
+    'pause.quit': 'Quit the game',
+    'title.touch': 'Two fingers on the island: twist or swipe to turn it.',
   },
 
   fr: {
@@ -5525,6 +5554,16 @@ const I18N = {
     'gh.stBusy': 'Synchronisation…',
     'gh.stAt': x => 'Synchronisé à ' + x,
     'gh.stErr': m => 'GitHub : ' + m,
+
+    // sortir du jeu, tourner l'île à deux doigts
+    'aria.quit': 'Quitter la partie',
+    'quit.title': 'Quitter la partie ?',
+    'quit.note': s => 'Ton score de ' + s + ' points sera enregistré.',
+    'quit.none': 'Rien à enregistrer pour l’instant.',
+    'quit.yes': 'Quitter',
+    'quit.no': 'Reprendre',
+    'pause.quit': 'Quitter la partie',
+    'title.touch': 'Deux doigts sur l’île : tourne-les ou glisse-les pour faire pivoter la vue.',
   },
 };
 
@@ -7562,7 +7601,7 @@ function toggleSpeed() {
 }
 $('btn-pause').addEventListener('click', togglePause);
 $('btn-resume').addEventListener('click', () => { setPaused(false); AudioFX.click(); });
-$('btn-restart').addEventListener('click', () => { $('pause').classList.add('hidden'); startGame(); });
+$('btn-restart').addEventListener('click', () => { $('pause').classList.add('hidden'); recordAbandon(); startGame(); });
 $('btn-sound').addEventListener('click', toggleMute);
 $('btn-speed').addEventListener('click', toggleSpeed);
 $('btn-rotl').addEventListener('click', () => { rotateView(-1); AudioFX.click(); });
@@ -8433,6 +8472,94 @@ async function ghSaveForm() {
   } catch (e) { ghStatus((e && e.message) || String(e), 'err'); }
 }
 
+/* ---------- sortir du jeu ----------
+   Une appli web ne peut pas se fermer elle-même sous iOS : le bouton « porte » termine la partie,
+   enregistre le score et ramène à l'écran titre (de là, « Changer de joueur » mène à la page d'accueil). */
+// partie interrompue (Quitter ou Recommencer) : son score compte comme une partie finie
+function recordAbandon() {
+  if (G.state !== 'play' || (G.score <= 0 && G.wave <= 0)) return;
+  save.bestWave = Math.max(save.bestWave, G.wave);
+  save.bestScore = Math.max(save.bestScore, G.score);
+  persist();
+  if (recordGame()) PROF.lastSync = syncNow();
+}
+function openQuit() {
+  if (G.state !== 'play' || G.modal) return;
+  AudioFX.init(); AudioFX.click();
+  $('pause').classList.add('hidden'); G.paused = false;
+  G.modal = 'quit';
+  $('quit-note').textContent = G.score > 0 ? say('quit.note', fmt(G.score)) : say('quit.none');
+  $('quit').classList.remove('hidden');
+  setTimeout(() => $('quit-no').focus(), 30);
+}
+function closeQuit() { $('quit').classList.add('hidden'); if (G.modal === 'quit') G.modal = false; AudioFX.click(); }
+function quitToTitle() {
+  recordAbandon();
+  AudioFX.click();
+  G.state = 'title'; G.paused = false; G.modal = false;
+  for (const id of ['quit', 'pause', 'perks', 'codex', 'gameover']) $(id).classList.add('hidden');
+  hudEl.classList.add('hidden'); hintEl.classList.add('hidden'); previewEl.classList.add('hidden');
+  demoScene();
+  $('title').classList.remove('hidden');
+  refreshTitle(); refreshChip();
+}
+$('btn-quit').addEventListener('click', openQuit);
+$('btn-quit-pause').addEventListener('click', openQuit);
+$('quit-yes').addEventListener('click', quitToTitle);
+$('quit-no').addEventListener('click', closeQuit);
+
+/* ---------- deux doigts sur l'île : tourner la vue ----------
+   On tourne les deux doigts (comme pour visser) ou on les fait glisser ensemble de côté :
+   l'île tourne en suivant les doigts, puis se cale sur le quart de tour le plus proche quand on les lève.
+   Aucun bloc n'est posé pendant le geste. */
+const TWIST_GAIN = 1.6;     // l'île tourne 1,6 fois plus que les doigts (30° de doigts suffisent pour passer au quart suivant)
+const SWIPE_TURN = 260;     // pixels de glissement à deux doigts pour un quart de tour
+const fingers = new Map();
+let twist = null;
+function fingerPair() {
+  const [a, b] = [...fingers.values()];
+  return { ang: Math.atan2(b.y - a.y, b.x - a.x), mx: (a.x + b.x) / 2 };
+}
+const quarterOf = yaw => Math.round((yaw - Math.PI / 4) / (Math.PI / 2));
+canvas.addEventListener('pointerdown', e => {
+  if (e.pointerType !== 'touch') return;
+  fingers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (fingers.size === 2) {
+    pointer.down = false; pointer.cell = -1; pointer.inside = false;   // le premier doigt ne posera rien
+    const f = fingerPair();
+    twist = { base: cam.yawTarget, lastAng: f.ang, turn: 0, mx0: f.mx, mx: f.mx, quad: cam.quad };
+  }
+}, true);
+canvas.addEventListener('pointermove', e => {
+  const f = fingers.get(e.pointerId); if (!f) return;
+  f.x = e.clientX; f.y = e.clientY;
+  if (!twist || fingers.size < 2) return;
+  pointer.down = false; pointer.cell = -1;
+  if (G.state !== 'play' || G.paused || G.modal) return;
+  const now = fingerPair();
+  let da = now.ang - twist.lastAng;             // petit pas d'angle, sans saut de ±180°
+  if (da > Math.PI) da -= 2 * Math.PI; else if (da < -Math.PI) da += 2 * Math.PI;
+  twist.turn += da; twist.lastAng = now.ang; twist.mx = now.mx;
+  // doigts tournés dans le sens des aiguilles d'une montre → l'île aussi ; glissés vers la droite → l'avant de l'île suit
+  cam.yawTarget = twist.base + twist.turn * TWIST_GAIN - (twist.mx - twist.mx0) / SWIPE_TURN * (Math.PI / 2);
+  const q = quarterOf(cam.yawTarget);
+  if (q !== twist.quad) { twist.quad = q; AudioFX.click(); buzz(10); }   // petit clic à chaque quart de tour franchi
+});
+function liftFinger(e) {
+  if (!fingers.delete(e.pointerId)) return;
+  if (twist) {
+    pointer.down = false; pointer.cell = -1;    // le doigt restant ne pose rien
+    if (twist.base !== null) {                   // fin du geste : l'île se cale sur le quart de tour le plus proche
+      cam.quad = quarterOf(cam.yawTarget);
+      cam.yawTarget = Math.PI / 4 + cam.quad * Math.PI / 2;
+      twist.base = null;
+    }
+  }
+  if (!fingers.size) twist = null;
+}
+canvas.addEventListener('pointerup', liftFinger, true);
+canvas.addEventListener('pointercancel', liftFinger, true);
+
 // raccourcis clavier quand une de ces fenêtres est ouverte ; renvoie true si la touche est prise ici
 function profileKeys(e) {
   const modalOn = !$('modal').classList.contains('hidden'), rankOn = !$('rank').classList.contains('hidden'), whoOn = !$('who').classList.contains('hidden');
@@ -8442,6 +8569,7 @@ function profileKeys(e) {
     return true;
   }
   if (rankOn) { if (e.code === 'Escape') closeRank(); return true; }
+  if (G.modal === 'quit') { if (e.code === 'Escape') closeQuit(); return true; }
   if (whoOn) return true;
   return e.target && (e.target.tagName === 'INPUT');
 }
@@ -8463,7 +8591,7 @@ showWho();
 requestAnimationFrame(frame);
 
 // petite porte d'entrée pour les tests et les curieux
-window.SP = { PROF, GH, rankList, summary, mergeData, pinHash, sha256, syncNow, showWho, say, setLang, lang: () => LANG, I18N, G, save, TUNE, MTYPES, ELS_ALL: ELS, placeAt, sellAt, startWave, startGame, rotateView, spawnMonster, portals, ELS, REACTIONS, toScreen, cellX, cellZ, nextCell, dist, PORTAL_K, blockCost,
+window.SP = { cam, recordAbandon, PROF, GH, rankList, summary, mergeData, pinHash, sha256, syncNow, showWho, say, setLang, lang: () => LANG, I18N, G, save, TUNE, MTYPES, ELS_ALL: ELS, placeAt, sellAt, startWave, startGame, rotateView, spawnMonster, portals, ELS, REACTIONS, toScreen, cellX, cellZ, nextCell, dist, PORTAL_K, blockCost,
   stepRaw: dt => stepWorld(dt),
   step: (n, dt) => { for (let i = 0; i < n && G.state === 'play'; i++) { if (G.modal === 'perks') $('perk-list').children[0].click(); stepWorld(dt); } }, stats: () => ({ particles: pCount, monsters: G.monsters.length, zones: G.zones.size, calls: renderer.info.render.calls }) };
 
