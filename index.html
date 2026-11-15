@@ -353,6 +353,7 @@ input{font:inherit;color:inherit;-webkit-user-select:text;user-select:text;touch
   color:#fff;font-family:var(--display);font-size:18px;line-height:1}
 .who-chip span{padding-bottom:3px}
 .who-chip:active{transform:scale(.96)}
+.who-chip small.bs{display:block;font-size:11px;opacity:.85;line-height:1.1;margin-top:1px}
 .who-chip .cl{font-style:normal;font-size:13px;opacity:.85}
 .swatches{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
 .sw{background:none;border:0;padding:4px;border-radius:14px}
@@ -8337,7 +8338,7 @@ function renderKnown() {
   const box = $('who-known'); if (!box) return;
   const list = whoEntries();
   box.innerHTML = list.length ? '<p class="who-label">' + esc(say('who.known')) + '</p><div class="who-chips">' +
-    list.map(o => '<button type="button" class="who-chip" data-pid="' + esc(o.id) + '">' + avatar(o.color, true) + '<span>' + esc(o.name) + '</span>' +
+    list.map(o => '<button type="button" class="who-chip" data-pid="' + esc(o.id) + '">' + avatar(o.color, true) + '<span>' + esc(o.name) + (o.best > 0 ? '<small class="bs">' + esc(fmt(o.best)) + ' ' + esc(say('rk.unitSum')) + '</small>' : '') + '</span>' +
       (o.local ? '' : '<i class="cl" title="' + esc(say('who.cloud')) + '">☁</i>') + '</button>').join('') + '</div>'
     : (W.loading ? '<p class="who-label">' + esc(say('who.loading')) + '</p>' : '');
   box.querySelectorAll('[data-pid]').forEach(b => b.addEventListener('click', () => {
@@ -8390,6 +8391,8 @@ async function whoNext() {
       const r = W.remote;
       if (pinHash(o.id, code) !== r.pinh) { inp.value = ''; return fail(say('pin.bad'), inp); }
       p = { id: o.id, name: r.name, color: r.color, pinh: r.pinh, lang: r.lang === 'fr' ? 'fr' : 'en', created: r.created, pu: r.pu || 0, data: fixData(r.data) };
+      const rs = GH.rank && GH.rank.players && GH.rank.players[o.id];
+      if (rs) { p.data.bestScore = Math.max(p.data.bestScore, rs.best || 0); p.data.bestWave = Math.max(p.data.bestWave, rs.wave || 0); }
       PROF.db.players[o.id] = p;
     }
     p.trust = trust || !!p.trust;
